@@ -90,14 +90,14 @@ namespace nshaders
 
 	void Shader::set_vec3(const glm::vec3& vec3, const std::string& name)
 	{
-		GLint myLoc = glGetUniformLocation(get_program_id(), name.c_str());
-		glProgramUniform3fv(get_program_id(), myLoc, 1, glm::value_ptr(vec3));
+		//GLint myLoc = glGetUniformLocation(get_program_id(), name.c_str());
+		//glProgramUniform3fv(get_program_id(), myLoc, 1, glm::value_ptr(vec3));
 	}
 
   void Shader::set_vec4(const glm::vec4& vec4, const std::string& name)
   {
-    GLint myLoc = glGetUniformLocation(get_program_id(), name.c_str());
-    glProgramUniform4fv(get_program_id(), myLoc, 1, glm::value_ptr(vec4));
+    //GLint myLoc = glGetUniformLocation(get_program_id(), name.c_str());
+    //glProgramUniform4fv(get_program_id(), myLoc, 1, glm::value_ptr(vec4));
   }
 }
 

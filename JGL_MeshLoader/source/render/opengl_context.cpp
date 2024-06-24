@@ -29,8 +29,9 @@ namespace nrender
 
   bool OpenGL_Context::init(nwindow::IWindow* window)
   {
-    __super::init(window);
-
+      
+    RenderContext::init(window);
+    
     /* Initialize the library */
     if (!glfwInit())
     {
@@ -38,6 +39,13 @@ namespace nrender
       return false;
     }
 
+      
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_SAMPLES, 4);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+      
     // Create the window and store this window as window pointer
     // so that we can use it in callback functions
     auto glWindow = glfwCreateWindow(window->Width, window->Height, window->Title.c_str(), nullptr, nullptr);
@@ -55,14 +63,18 @@ namespace nrender
     glfwSetWindowSizeCallback(glWindow, on_window_size_callback);
     glfwSetWindowCloseCallback(glWindow, on_window_close_callback);
     glfwMakeContextCurrent(glWindow);
+      
+    gladLoadGL(glfwGetProcAddress);
 
+      
+/*
     GLenum err = glewInit();
     if (GLEW_OK != err)
-    {
+    {*/
       /* Problem: glewInit failed, something is seriously wrong. */
-      fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
-      return false;
-    }
+    //  fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+     // return false;
+    //}*/
 
     glEnable(GL_DEPTH_TEST);
 
